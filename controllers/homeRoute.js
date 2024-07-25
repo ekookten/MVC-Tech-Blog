@@ -1,18 +1,12 @@
-const router = require("express").Router();
-const { Blog, User, Comment } = require("../models");
+const router = require('express').Router();
+const { Blog, User, Comment } = require('../models');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const blogData = await Blog.findAll({
-      include: [User],
-    });
+    const blogData = await Blog.findAll({ include: [User] });
+    const blogs = blogData.map(blog => blog.get({ plain: true }));
 
-    // Serialize data so the template can read it
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render("homePage", {
+    res.render('homePage', {
       blogs,
       loggedIn: req.session.loggedIn,
     });
@@ -21,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/blog/:id", async (req, res) => {
+router.get('/blog/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
       include: [
@@ -35,7 +29,7 @@ router.get("/blog/:id", async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
-    res.render("viewPost", {
+    res.render('viewPost', {
       blog,
       loggedIn: req.session.loggedIn,
     });
@@ -45,21 +39,20 @@ router.get("/blog/:id", async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
-    if (req.session.loggedIn) {
-      res.redirect('/dashBoard');
-      return;
-    }
-  
-    res.render('login');
-  });
+  if (req.session.loggedIn) {
+    res.redirect('/dashBoard');
+    return;
+  }
 
-  router.get('/signup', (req, res) => {
-    try {
-      res.render('signup');
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  res.render('login');
+});
 
-  module.exports = router;
+router.get('/signup', (req, res) => {
+  try {
+    res.render('signup');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;

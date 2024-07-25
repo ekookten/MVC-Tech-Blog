@@ -39,17 +39,19 @@ router.put("/:id", withAuth, async (req, res) => {
     const updatedBlog = await Blog.update(req.body, {
       where: { id: req.params.id, user_id: req.session.user_id },
     });
+
     if (updatedBlog[0] === 0) {
-      res
-        .status(404)
-        .json({
-          message: "No blog found or user not authorized to update this blog!",
-        });
+      res.status(404).json({
+        message: "No blog found or user not authorized to update this blog!",
+      });
       return;
     }
+
     const updatedData = await Blog.findByPk(req.params.id);
     res.status(200).json(updatedData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

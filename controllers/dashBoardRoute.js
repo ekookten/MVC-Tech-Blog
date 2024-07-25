@@ -23,7 +23,7 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/new", withAuth, (req, res) => {
-  res.render("newPost", {
+  res.render("newBlog", {
     dashboard: true,
     loggedIn: req.session.loggedIn,
   });
@@ -36,7 +36,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     if (postData) {
       const post = postData.get({ plain: true });
 
-      res.render("editPost", {
+      res.render("editBlog", {
         dashboard: true,
         post,
         loggedIn: req.session.loggedIn,

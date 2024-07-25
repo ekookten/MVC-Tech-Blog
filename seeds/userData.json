@@ -1,23 +1,18 @@
 [
-    {
-      "name": "Jennifer",
-      "email": "jennifer@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "name": "Edyta",
-      "email": "edytao@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "name": "Yvette",
-      "email": "yvette0@aol.com",
-      "password": "password12345"
-    },
-    {
-        "name": "Selcan",
-        "email": "selcan@yahoo.com",
-        "password": "password12345"
-      }
-  ]
-  
+  {
+    "name": "Jennifer",
+    "password": "password12345"
+  },
+  {
+    "name": "Edyta",
+    "password": "password12345"
+  },
+  {
+    "name": "Yvette",
+    "password": "password12345"
+  },
+  {
+    "name": "Selcan",
+    "password": "password12345"
+  }
+]
