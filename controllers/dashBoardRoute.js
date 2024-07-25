@@ -1,35 +1,49 @@
-const router = require('express').Router();
-const { Blog } = require('../models');
-const withAuth = require('../helpers/auth');
+const router = require("express").Router();
+const { Post } = require("../models");
+const withAuth = require("../helpers/auth");
 
-router.post('/', withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
-    const newBlog = await Blog.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-
-    res.status(200).json(newBlog);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    const blogData = await Blog.destroy({
+    const postData = await Post.findAll({
       where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
+        userId: req.session.user_id,
       },
     });
 
-    if (!blogData) {
-      res.status(404).json({ message: 'No project found with this id!' });
-      return;
-    }
+    const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.status(200).json(blogData);
+    res.render("dashBoard", {
+      dashboard: true,
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/new", withAuth, (req, res) => {
+  res.render("newPost", {
+    dashboard: true,
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render("editPost", {
+        dashboard: true,
+        post,
+        loggedIn: req.session.loggedIn,
+      });
+    } else {
+      res.status(404).end();
+    }
   } catch (err) {
     res.status(500).json(err);
   }
