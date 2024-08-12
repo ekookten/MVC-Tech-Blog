@@ -1,0 +1,14 @@
+[
+  {
+    "title": "RecipeMaster",
+    "body": "A mobile app that helps users discover new recipes based on the ingredients they have at home. It offers step-by-step instructions, video tutorials, and a meal planning feature."
+  },
+  {
+    "title": "FitLife",
+    "body": "A web app that provides personalized workout routines and tracks fitness progress. Users can log their workouts, set goals, and connect with a community for motivation and support."
+  },
+  {
+    "title": "MindfulMoments",
+    "body": "A mindfulness and meditation app that offers guided meditations, breathing exercises, and relaxation techniques. Users can track their progress and set daily reminders for mindfulness practices."
+  }
+]

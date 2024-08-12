@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { Post } = require("../models");
-const withAuth = require("../helpers/auth");
+const { loginRequireRedirect } = require("../helpers/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", loginRequireRedirect, async (req, res) => {
   try {
     const postData = await Post.findAll({
       where: {
@@ -15,31 +15,31 @@ router.get("/", withAuth, async (req, res) => {
     res.render("dashBoard", {
       dashboard: true,
       posts,
-      loggedIn: req.session.loggedIn,
+      loggedIn: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/new", withAuth, (req, res) => {
-  res.render("newBlog", {
+router.get("/new", loginRequireRedirect, (req, res) => {
+  res.render("newPost", {
     dashboard: true,
-    loggedIn: req.session.loggedIn,
+    loggedIn: req.session.logged_in,
   });
 });
 
-router.get("/edit/:id", withAuth, async (req, res) => {
+router.get("/edit/:id", loginRequireRedirect, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 
     if (postData) {
       const post = postData.get({ plain: true });
 
-      res.render("editBlog", {
+      res.render("editPost", {
         dashboard: true,
         post,
-        loggedIn: req.session.loggedIn,
+        loggedIn: req.session.logged_in,
       });
     } else {
       res.status(404).end();
