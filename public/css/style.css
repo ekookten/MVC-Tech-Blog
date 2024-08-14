@@ -1,10 +1,10 @@
 :root {
-  --primary: #ccdad1;
-  --secondary: #9caea9;
-  --tertiary: #788585;
-  --light-dark: #6f6866;
-  --dark: #38302e;
-  --border-radius: 0.3rem;
+  --primary: #f0f4f8;
+  --secondary: #e1e8ed;
+  --tertiary: #c0d1e4;
+  --light-dark: #a0b2c0;
+  --dark: #2b3a42;
+  --border-radius: 0.5rem;
 }
 
 * {
@@ -15,10 +15,10 @@ body {
   background-color: var(--primary);
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Arial", sans-serif;
   color: var(--dark);
-  line-height: 1.5;
-  font-size: 16px;
+  line-height: 1.6;
+  font-size: 18px;
 }
 
 h1,
@@ -27,10 +27,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
   color: var(--dark);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 h2 a:visited {
@@ -38,16 +38,16 @@ h2 a:visited {
 }
 
 h2 a {
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 header {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 main {
-  margin: 20px auto;
-  width: 94%;
+  margin: 30px auto;
+  width: 90%;
 }
 
 a {
@@ -55,42 +55,41 @@ a {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 input {
-    width: 100%;
-    border: 1px solid #ccc;
-    background: #FFF;
-    margin: 0 0 5px;
-    padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin: 0 0 8px;
+  padding: 12px;
 }
 
 .card-header h2 {
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 .btn {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-decoration: none;
-  padding: 6px 5px;
+  padding: 8px 10px;
   width: 100%;
   display: block;
-  margin: 5px 0;
+  margin: 6px 0;
   border-radius: var(--border-radius);
-  color: var(--primary);
+  color: #fff;
   border: none;
   outline: none;
-  background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--dark);
-  transform: translate(-1px, -1px);
+  background-color: var(--dark);
+  box-shadow: 3px 3px var(--light-dark);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-  color: var(--primary);
   background-color: var(--tertiary);
-  transform: translate(0, 0);
-  box-shadow: 2px 2px var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 2px 2px var(--light-dark);
 }
 
 .btn-inline {
@@ -105,34 +104,36 @@ input {
   width: 100%;
   position: fixed;
   background-color: var(--dark);
+  padding: 10px 20px;
 }
 
 .nav-item {
-  margin: 0 40px;
+  margin: 0 20px;
 }
 
 .nav-item a {
   color: var(--primary);
+  font-weight: bold;
 }
 
 .hero {
-  padding: 3% 4%;
+  padding: 4% 5%;
   background-color: var(--dark);
   color: var(--primary);
 }
 
 .hero p {
-  max-width: 75%;
+  max-width: 80%;
 }
 
 .app-title {
-  font-size: 3rem;
-  background-color: var(--primary);
+  font-size: 2.5rem;
+  background-color: var(--secondary);
   color: var(--dark);
-  padding: 0 10px;
+  padding: 10px 15px;
   display: inline-block;
   border-radius: var(--border-radius);
-  box-shadow: 6px 5px var(--light-dark);
+  box-shadow: 4px 4px var(--light-dark);
 }
 
 .app-title a {
@@ -140,11 +141,11 @@ input {
 }
 
 .list-group {
-  padding: 1%;
+  padding: 2%;
 }
 
 .list-item {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   padding: 1.5%;
   border-radius: var(--border-radius);
   background-color: var(--light-dark);
@@ -159,7 +160,7 @@ input {
 .footer a {
   display: inline-block;
   padding: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   background-color: var(--dark);
   color: var(--primary);
   border-radius: var(--border-radius);
@@ -169,19 +170,19 @@ input {
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
+  border: 2px solid var(--dark);
   border-radius: var(--border-radius);
 }
 
 .card-header {
-  color: var(--primary);
+  color: var(--secondary);
   background-color: var(--dark);
   padding: 1%;
-  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+  border-radius: calc(0.3rem - 1px) calc(0.3rem - 1px) 0 0;
 }
 
 .card-body {
-  padding: 1%;
+  padding: 2%;
 }
 
 /* FORM */
@@ -192,14 +193,14 @@ input {
 }
 
 .form-label {
-  font-size: 1.1rem;
-  margin: 0 0 0 5px;
+  font-size: 1.2rem;
+  margin: 0 0 0 8px;
 }
 
 .form-input {
   width: 100%;
-  padding: 1%;
-  margin: 5px 0;
+  padding: 12px;
+  margin: 6px 0;
   font-size: 1.2rem;
   border: 2px solid var(--light-dark);
   border-radius: var(--border-radius);
