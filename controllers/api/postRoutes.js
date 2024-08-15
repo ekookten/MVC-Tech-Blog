@@ -31,7 +31,7 @@ router.put('/:id', loginRequiredApi, async (req, res) => {
   }
 });
 
-router.delete('/:id', apiGuard, async (req, res) => {
+router.delete('/:id', loginRequiredApi, async (req, res) => {
   try {
     const [affectedRows] = Post.destroy({
       where: {

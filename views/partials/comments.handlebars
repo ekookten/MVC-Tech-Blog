@@ -1,8 +1,14 @@
-<div>
-  <p>
-    {{body}}
-  </p>
-  <p>
-    &mdash; {{user.username}}, {{formatDate createdAt}}
-  </p>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text">
+        {{body}}
+      </p>
+      <footer class="blockquote-footer">
+        &mdash;
+        <cite title="Source Title">{{user.username}}</cite>,
+        {{formatDate createdAt}}
+      </footer>
+    </div>
+  </div>
 </div>

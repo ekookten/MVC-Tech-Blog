@@ -1,51 +1,66 @@
-const router = require("express").Router();
-const { Post } = require("../models");
-const { loginRequireRedirect } = require("../helpers/auth");
+const router = require('express').Router();
+const { User } = require('../../models');
 
-router.get("/", loginRequireRedirect, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      where: {
-        userId: req.session.user_id,
-      },
-    });
+    const userData = await User.create(req.body);
 
-    const posts = postData.map((post) => post.get({ plain: true }));
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.username = userData.username;
+      req.session.logged_in = true;
 
-    res.render("dashBoard", {
-      dashboard: true,
-      posts,
-      loggedIn: req.session.logged_in,
+      res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
-router.get("/new", loginRequireRedirect, (req, res) => {
-  res.render("newPost", {
-    dashboard: true,
-    loggedIn: req.session.logged_in,
-  });
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect username or password, please try again' });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect username or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.username = userData.username;
+      req.session.logged_in = true;
+
+      res.status(200).json({
+        userData,
+        message: 'You are now logged in!',
+      });
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
-router.get("/edit/:id", loginRequireRedirect, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id);
-
-    if (postData) {
-      const post = postData.get({ plain: true });
-
-      res.render("editPost", {
-        dashboard: true,
-        post,
-        loggedIn: req.session.logged_in,
-      });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

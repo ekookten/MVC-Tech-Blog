@@ -1,14 +1,14 @@
 [
   {
-    "title": "RecipeMaster",
-    "body": "A mobile app that helps users discover new recipes based on the ingredients they have at home. It offers step-by-step instructions, video tutorials, and a meal planning feature."
+    "title": "TravelBuddy",
+    "body": "A mobile app that helps users plan their trips by suggesting destinations, activities, and accommodations based on their preferences and budget. It includes travel guides, a trip planner, and a social feature to share experiences with other travelers."
   },
   {
-    "title": "FitLife",
-    "body": "A web app that provides personalized workout routines and tracks fitness progress. Users can log their workouts, set goals, and connect with a community for motivation and support."
+    "title": "HealthyHabits",
+    "body": "A web app that promotes healthy living by offering personalized diet plans and tracking daily habits. Users can log their meals, track water intake, set fitness goals, and receive tips on maintaining a balanced lifestyle."
   },
   {
-    "title": "MindfulMoments",
-    "body": "A mindfulness and meditation app that offers guided meditations, breathing exercises, and relaxation techniques. Users can track their progress and set daily reminders for mindfulness practices."
+    "title": "EcoTrack",
+    "body": "An environmental app that helps users track their carbon footprint and adopt sustainable practices. It offers tips on reducing waste, conserving energy, and making eco-friendly choices, along with progress tracking and goal-setting features."
   }
 ]
