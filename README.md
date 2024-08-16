@@ -10,4 +10,4 @@ To use the website, click on the deployed link below, which will take you to the
 
 Render Deployed Link : 
 
-Github Repository : 
+Github Repository : https://github.com/ekookten/MVC-Tech-Blog
